@@ -2,3 +2,8 @@ dotenv
 pickle 
 sickit-learn
 tweepy
+requests
+nltk
+wordcloud
+matplotlib
+urllib

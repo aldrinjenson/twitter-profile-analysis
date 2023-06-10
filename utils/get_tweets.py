@@ -1,5 +1,6 @@
 import tweepy
 from dotenv import dotenv_values
+import json
 
 # Load the environment variables from .env file
 env = dotenv_values('.env')
@@ -16,10 +17,8 @@ auth = tweepy.OAuthHandler(api_key, api_secret)
 auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth)
 
-tweets = []
-user = {}
+
 def fetch_tweets(profile_url, exclude_replies=True):
-    global tweets, user
     username = profile_url.split("/")[-1]
 
     try:
@@ -30,19 +29,15 @@ def fetch_tweets(profile_url, exclude_replies=True):
         print("Friends Count:", user.friends_count)
         print("--------------------")
 
-        tweets = api.user_timeline(screen_name=username, count=70, tweet_mode="extended", exclude_replies=exclude_replies)
+        tweets = api.user_timeline(screen_name=username, count=60, tweet_mode="extended", exclude_replies=exclude_replies)
         for tweet in tweets:
             print("Tweet:", tweet.full_text)
             print("Likes:", tweet.favorite_count)
             print("--------------------")
-        return tweets
+        # filename = 'tweets.json'
+        # save_tweets_to_json(tweets, filename)
+        return tweets, user
 
     except tweepy.TweepError as e:
         print("Error:", str(e))
         return []
-
-
-if __name__ == "__main__" :
-	profile_url = "https://twitter.com/elonmusk"
-	# profile_url = "https://twitter.com/aldrinjenson"
-	fetch_tweets(profile_url, False)

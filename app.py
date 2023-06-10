@@ -1,40 +1,27 @@
 import streamlit as st
-import time
-from sentiment_analyser import analysis_sentiment
+# from utils import create_streamlit_base, print_user_profile
+# from tweet_utils import fetch_tweets
+from utils.get_tweets import fetch_tweets
+from utils.misc_utils import print_user_profile, create_streamlit_base
+from utils.tweets_analyser import analyse_tweets
+
+
+# from tweets_analyser import analyse_tweets
+
 
 def main():
-    st.title("Twitter Profile Analyser")
-    st.markdown("**Analyse a profile and get insights for you CyberSecurity Research!**")
-    st.markdown("A person's tweets are an insight to their mind!"
-                "Based on Twitter APIs the power of machine learning.")
-    st.write(
-        "Eg: try pasting this link maybe: https://twitter.com/elonmusk")
-
-    # Remove Streamlit's made with Streamlit footer
-    st.markdown(
-        '<style>#MainMenu {visibility: hidden;} footer {visibility: hidden;}</style>', unsafe_allow_html=True)
-
-    # Sidebar
-    st.sidebar.title("Created by Aldrin Jenson")
-    st.sidebar.markdown(
-        "[Aldrin Jenson](https://aldrinjenson.tech)"
-    )
-
-    st.sidebar.markdown("#### Connect with me:")
-    st.sidebar.markdown("[GitHub](https://github.com/aldrinjenson)")
-    st.sidebar.markdown("[LinkedIn](https://www.linkedin.com/in/aldrinjenson)")
-    st.sidebar.markdown("[Twitter](https://twitter.com/aldrinjenson)")
-    st.sidebar.markdown("Email: mdl19cs008@mec.ac.in")
-
-    twitter_link = st.text_input("Enter twitter link:")
+    create_streamlit_base()
+    twitter_profile_url = st.text_input("Enter twitter link:")
+    twitter_profile_url = "https://twitter.com/elonmusk"
     if st.button("Submit"):
-        if twitter_link:
-            info_text = st.info("Performing analysis... Please wait.")
-            # comments = get_comments(twitter_link)
+        if twitter_profile_url:
+            info_text = st.info("Fetching Profile...")
+            tweets, user = fetch_tweets(twitter_profile_url)
+
+            info_text.empty()
             # info_text.empty()
-            # sentiment_text = analysis_sentiment(comments)
-            st.success("Sentiment Analysis:")
-            st.write(sentiment_text)
+            print_user_profile(user)
+            analyse_tweets(tweets, user)
         else:
             st.warning("Please enter a valid twitter link.")
 
