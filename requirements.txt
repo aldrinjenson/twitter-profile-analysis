@@ -1,0 +1,4 @@
+dotenv
+pickle 
+sickit-learn
+tweepy
