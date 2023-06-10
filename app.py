@@ -1,39 +1,14 @@
 import streamlit as st
 import time
-from itertools import islice
-from youtube_comment_downloader import *
 from sentiment_analyser import analysis_sentiment
 
-downloader = YoutubeCommentDownloader()
-
-
-def get_comments(youtube_link):
-    # Code to fetch comments from YouTube API
-    # Replace this with your own implementation
-
-    # Simulating a delay to show loading message
-    # time.sleep(3)
-    comments_generator = downloader.get_comments_from_url(
-        youtube_link, sort_by=SORT_BY_POPULAR)
-    comments = []
-
-    for comment in islice(comments_generator, 50):
-        comments.append(comment["text"])
-
-    # Returning sample comments for demonstration
-    # comments = ["Great video!", "Interesting analysis", "Nice work!"]
-    print(comments)
-    return comments
-
-
 def main():
-    # Set app title and description
-    st.title("Youtube Video Sentiment Analysis")
-    st.markdown("**Save your time before watching a YouTube video!**")
-    st.markdown("Analyse YouTube videos to get sentiment analysis and understand what people think. "
-                "Based on popular YouTube comments and using the power of machine learning.")
+    st.title("Twitter Profile Analyser")
+    st.markdown("**Analyse a profile and get insights for you CyberSecurity Research!**")
+    st.markdown("A person's tweets are an insight to their mind!"
+                "Based on Twitter APIs the power of machine learning.")
     st.write(
-        "Eg: try pasting this link maybe: https://www.youtube.com/watch?v=c7Dg8zkTmHI")
+        "Eg: try pasting this link maybe: https://twitter.com/elonmusk")
 
     # Remove Streamlit's made with Streamlit footer
     st.markdown(
@@ -51,17 +26,17 @@ def main():
     st.sidebar.markdown("[Twitter](https://twitter.com/aldrinjenson)")
     st.sidebar.markdown("Email: mdl19cs008@mec.ac.in")
 
-    youtube_link = st.text_input("Enter YouTube link:")
+    twitter_link = st.text_input("Enter twitter link:")
     if st.button("Submit"):
-        if youtube_link:
-            info_text = st.info("Fetching comments... Please wait.")
-            comments = get_comments(youtube_link)
-            info_text.empty()
-            sentiment_text = analysis_sentiment(comments)
+        if twitter_link:
+            info_text = st.info("Performing analysis... Please wait.")
+            # comments = get_comments(twitter_link)
+            # info_text.empty()
+            # sentiment_text = analysis_sentiment(comments)
             st.success("Sentiment Analysis:")
             st.write(sentiment_text)
         else:
-            st.warning("Please enter a valid YouTube link.")
+            st.warning("Please enter a valid twitter link.")
 
 
 if __name__ == "__main__":
