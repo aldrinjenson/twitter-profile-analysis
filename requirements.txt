@@ -1,4 +1,3 @@
-pickle 
 sickit-learn
 tweepy
 requests
