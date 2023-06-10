@@ -29,8 +29,8 @@ def create_streamlit_base():
         "Eg: try pasting this link maybe: https://twitter.com/elonmusk")
 
     # Remove Streamlit's made with Streamlit footer
-    st.markdown(
-        '<style>#MainMenu {visibility: hidden;} footer {visibility: hidden;}</style>', unsafe_allow_html=True)
+    # st.markdown(
+    #     '<style>#MainMenu {visibility: hidden;} footer {visibility: hidden;}</style>', unsafe_allow_html=True)
 
     # Sidebar
     st.sidebar.title("Created by Aldrin Jenson")

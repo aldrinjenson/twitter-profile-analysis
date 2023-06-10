@@ -1,4 +1,3 @@
-dotenv
 pickle 
 sickit-learn
 tweepy
@@ -7,3 +6,5 @@ nltk
 wordcloud
 matplotlib
 urllib
+python-dotenv
+pillow

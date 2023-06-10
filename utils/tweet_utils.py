@@ -2,15 +2,6 @@
 from utils.misc_utils import format_ordered_list
 from utils.visual_utils import generate_bar_chart, generate_pie_chart, generateWordCloud
 
-def extract_user_information(user):
-    name = user.name
-    username = user.screen_name
-    bio = user.description
-    followers_count = user.followers_count
-    friends_count = user.friends_count
-    return name, username, bio, followers_count, friends_count
-
-
 def generate_summary_report(tweets, tweet_features, limit=5):
     print(tweet_features)
 
