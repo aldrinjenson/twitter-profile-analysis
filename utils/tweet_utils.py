@@ -46,6 +46,13 @@ def generate_summary_report(tweets, tweet_features, limit=5):
     for tweet, likes in top_liked_tweets[:limit]:
         report += f"- Likes: {likes}\n\n"
         report += f"{tweet}\n\n"
+    # report += "### Tweets with Most Likes\n\n"
+    # for tweet, likes in top_liked_tweets[:limit]:
+    #     tweet_url = tweet.url  # Assuming the tweet object has a 'url' attribute containing the URL of the original tweet
+    #     report += f"- Likes: {likes}\n\n"
+    #     report += f"[{tweet}]({tweet_url})\n\n"
+    
+
 
     # Extract tweets with most retweets
     report += "### Tweets with Most Retweets\n\n"
@@ -53,9 +60,9 @@ def generate_summary_report(tweets, tweet_features, limit=5):
         report += f"- Retweets: {retweets}\n\n"
         report += f"{tweet}\n\n"
     
-    # generateWordCloud(all_nouns)
+    generateWordCloud(all_nouns)
     generate_pie_chart(all_emotions,"Emotions Present")
-    # generate_bar_chart(all_nouns)
+    generate_bar_chart(all_nouns)
 
     return report
 

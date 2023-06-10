@@ -2,6 +2,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import LogisticRegression
 from sklearn.metrics import accuracy_score
+import streamlit as st
 
 import pickle
 import re
@@ -22,7 +23,8 @@ def pre_process_visualise(df=df):
     plt.title("Sentiment Distribution")
     plt.xlabel("Sentiment")
     plt.ylabel("Count")
-    plt.show()
+    # plt.show()
+    st.pyplot()
 
 
 def train_model(df=df):
