@@ -1,4 +1,4 @@
-Sickit-learn
+scikit-learn
 tweepy
 requests
 nltk
