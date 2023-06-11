@@ -4,6 +4,6 @@ requests
 nltk
 wordcloud
 matplotlib
-urllib
+urllib3
 python-dotenv
 pillow
