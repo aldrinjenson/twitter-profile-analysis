@@ -2,8 +2,8 @@ from transformers import pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer
 import pickle
 
-# emotion_classifier = pipeline(
-#     "text-classification", model="bhadresh-savani/distilbert-base-uncased-emotion", return_all_scores=True)
+emotion_classifier = pipeline(
+    "text-classification", model="bhadresh-savani/distilbert-base-uncased-emotion", return_all_scores=True)
 
 vectorizer = TfidfVectorizer(max_features=5000)
 

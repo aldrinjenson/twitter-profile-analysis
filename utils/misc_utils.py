@@ -28,9 +28,10 @@ def create_streamlit_base():
     st.write(
         "Eg: try pasting this link maybe: https://twitter.com/elonmusk")
 
+    st.markdown('<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>', unsafe_allow_html=True)
     # Remove Streamlit's made with Streamlit footer
-    # st.markdown(
-    #     '<style>#MainMenu {visibility: hidden;} footer {visibility: hidden;}</style>', unsafe_allow_html=True)
+    st.markdown(
+        '<style>#MainMenu {visibility: hidden;} footer {visibility: hidden;}</style>', unsafe_allow_html=True)
 
     # Sidebar
     st.sidebar.title("Created by Aldrin Jenson")
