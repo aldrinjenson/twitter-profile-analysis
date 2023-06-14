@@ -1,47 +1,38 @@
 import tweepy
 from dotenv import dotenv_values
 import json
+import snscrape.modules.twitter as sntwitter
 
 env = dotenv_values('.env')
 
-api_key = env['TWITTER_API_KEY']
-api_secret = env['TWITTER_API_SECRET']
-access_token = env['TWITTER_ACCESS_TOKEN']
-access_token_secret = env['TWITTER_ACCESS_TOKEN_SECRET']
-
-
-# auth = tweepy.OAuthHandler(api_key, api_secret)
-# # client = tweepy.Client("Bearer Token here")
-# auth.set_access_token(access_token, access_token_secret)
-# api = tweepy.API(auth)
-
-client = tweepy.Client("")
-api = client
-
 def fetch_tweets(profile_url, exclude_replies=True):
     username = profile_url.split("/")[-1]
-    print(('ok'))
-
     try:
-        u=api.get_user(username=username)
-        print(u)
-        print(('hehe'))
-        user = api.get_user(screen_name=username)
-        print('bro')
+        user = sntwitter.TwitterUserScraper(username).entity
         print(user)
-        print("Username:", user.screen_name)
-        print("Bio:", user.description)
-        print("Followers Count:", user.followers_count)
-        print("Friends Count:", user.friends_count)
+        print(user.statusesCount)
+        print("Username:", user.displayname)
+        print("Bio:", user.rawDescription)
+        print("Followers Count:", user.followersCount)
+        print("Friends Count:", user.friendsCount)
         print("--------------------")
 
-        tweets = api.user_timeline(screen_name=username, count=100, tweet_mode="extended", exclude_replies=exclude_replies)
-        for tweet in tweets:
-            print("Tweet:", tweet.full_text)
-            print("Likes:", tweet.favorite_count)
+        tweets_generator = sntwitter.TwitterSearchScraper(f"from:{username} -filter:media").get_items()
+        tweets = []
+        max_count = 10
+        for i, tweet in enumerate(tweets_generator):
+            if i == max_count:
+                break
+            tweets.append(tweet)
+            print("Tweet:", tweet.rawContent)
+            print("Likes:", tweet.likeCount)
             print("--------------------")
         return tweets, user
 
     except Exception as e :
         print("Error:", str(e))
         return []
+
+
+if __name__ == "__main__":
+    fetch_tweets('https://twitter.com/elonmusk')

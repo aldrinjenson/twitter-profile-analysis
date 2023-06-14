@@ -32,7 +32,7 @@ def get_features_from_tweet(tweets):
                      for mention in tweet.entities['user_mentions']]
         urls += [url['expanded_url'] for url in tweet.entities['urls']]
 
-        tweet_text = tweet.full_text
+        tweet_text = tweet.rawContent
         nouns = extractEntities(tweet_text)[0]
         # nouns = []
         all_nouns += nouns
@@ -40,14 +40,14 @@ def get_features_from_tweet(tweets):
         # top_emotion = "happy"
         all_emotions.append(top_emotion)
 
-        if tweet.favorite_count > 0:
-            top_liked_tweets.append((tweet.full_text, tweet.favorite_count))
+        if tweet.likeCount > 0:
+            top_liked_tweets.append((tweet.rawContent, tweet.likeCount))
 
         if tweet.retweet_count > 0:
-            top_retweeted_tweets.append((tweet.full_text, tweet.retweet_count))
+            top_retweeted_tweets.append((tweet.rawContent, tweet.retweet_count))
 
-        # if tweet.retweet_count > 0 and tweet.user.screen_name == user.screen_name:
-        #     top_retweeted_tweets.append((tweet.full_text, tweet.retweet_count))
+        # if tweet.retweet_count > 0 and tweet.user.displayname == user.displayname:
+        #     top_retweeted_tweets.append((tweet.rawContent, tweet.retweet_count))
 
     result = {
         'hashtags': hashtags,

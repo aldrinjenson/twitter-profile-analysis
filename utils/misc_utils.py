@@ -7,16 +7,16 @@ from io import BytesIO
 def print_user_profile(user):
     col1, col2 = st.columns([1, 3])
     with col1:
-        img_url = user.profile_image_url.replace('_normal.jpg', '.jpg')
+        img_url = user.profileImageUrl.replace('_normal.jpg', '.jpg')
         response = requests.get(img_url)
         image = Image.open(BytesIO(response.content))
         st.image(image, caption='Profile Picture' )
     with col2:
-        st.subheader(f"{user.name} (@{user.screen_name})")
-        st.write(f"Bio: {user.description}")
-        st.write(f"Followers: {user.followers_count} | Following: {user.friends_count}")
-        # st.write(f"Following: {user.friends_count}")
-        st.write(f"Total Tweets: {user.statuses_count}")
+        st.subheader(f"{user.displayname} (@{user.displayname})")
+        st.write(f"Bio: {user.rawDescription}")
+        st.write(f"Followers: {user.followersCount} | Following: {user.friendsCount}")
+        # st.write(f"Following: {user.friendsCount}")
+        st.write(f"Total Tweets: {user.statusesCount}")
 
 
 def create_streamlit_base():
