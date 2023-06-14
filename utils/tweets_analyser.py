@@ -3,6 +3,8 @@ from transformers import pipeline
 import nltk
 from utils.tweet_utils import generate_summary_report
 import re
+from transformers import pipeline
+import nltk
 
 
 def extractEntities(text):
@@ -34,8 +36,8 @@ def get_features_from_tweet(tweets):
         nouns = extractEntities(tweet_text)[0]
         # nouns = []
         all_nouns += nouns
-        # top_emotion = getTopEmotion(tweet_text)[0]
-        top_emotion = "happy"
+        top_emotion = getTopEmotion(tweet_text)[0]
+        # top_emotion = "happy"
         all_emotions.append(top_emotion)
 
         if tweet.favorite_count > 0:

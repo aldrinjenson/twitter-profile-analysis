@@ -10,16 +10,25 @@ access_token = env['TWITTER_ACCESS_TOKEN']
 access_token_secret = env['TWITTER_ACCESS_TOKEN_SECRET']
 
 
-auth = tweepy.OAuthHandler(api_key, api_secret)
-auth.set_access_token(access_token, access_token_secret)
-api = tweepy.API(auth)
+# auth = tweepy.OAuthHandler(api_key, api_secret)
+# # client = tweepy.Client("Bearer Token here")
+# auth.set_access_token(access_token, access_token_secret)
+# api = tweepy.API(auth)
 
+client = tweepy.Client("")
+api = client
 
 def fetch_tweets(profile_url, exclude_replies=True):
     username = profile_url.split("/")[-1]
+    print(('ok'))
 
     try:
+        u=api.get_user(username=username)
+        print(u)
+        print(('hehe'))
         user = api.get_user(screen_name=username)
+        print('bro')
+        print(user)
         print("Username:", user.screen_name)
         print("Bio:", user.description)
         print("Followers Count:", user.followers_count)
@@ -33,6 +42,6 @@ def fetch_tweets(profile_url, exclude_replies=True):
             print("--------------------")
         return tweets, user
 
-    except tweepy.TweepError as e:
+    except Exception as e :
         print("Error:", str(e))
         return []
