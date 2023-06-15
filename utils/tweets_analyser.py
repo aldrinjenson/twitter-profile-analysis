@@ -4,7 +4,7 @@ import nltk
 from utils.tweet_utils import generate_summary_report
 import re
 from transformers import pipeline
-from utils.sentiment_analysis import getTopEmotion
+from utils.sentiment_analysis import getTopEmotion, get_top_sentiment
 import nltk
 
 
@@ -37,7 +37,6 @@ def get_features_from_tweet(tweets):
 
         tweet_text = tweet.rawContent
         nouns = extractEntities(tweet_text)[0]
-        # nouns = []
         all_nouns += nouns
         top_emotion = getTopEmotion(tweet_text)[0]
         # top_emotion = "happy"
@@ -68,6 +67,7 @@ def get_features_from_tweet(tweets):
 
 
 def analyse_tweets(tweets, user):
+    get_top_sentiment()
     tweet_features = get_features_from_tweet(tweets)
     print(tweet_features)
     summary_report = generate_summary_report(tweets, tweet_features)

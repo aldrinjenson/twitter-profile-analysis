@@ -8,7 +8,8 @@ from utils.tweets_analyser import analyse_tweets
 def main():
     create_streamlit_base()
     twitter_profile_url = st.text_input("Enter twitter link:")
-    twitter_profile_url = "https://twitter.com/elonmusk"
+    if not twitter_profile_url:
+        twitter_profile_url = "https://twitter.com/elonmusk"
     if st.button("Submit"):
         if twitter_profile_url:
             info_text = st.info("Fetching Profile...")
