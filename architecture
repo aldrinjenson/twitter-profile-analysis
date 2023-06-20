@@ -1,9 +1,15 @@
+class Sentiment Analyser
+  - get_sentiment_classifier = return sentiment classifier
+
+class Trainer:
+  pre_process_analyser_visualiser
+  train_model
+  save_model
+
 class EmotionAnalyser:
   - get_emotion_classifier = return emotion classifier
 
 
-class Sentiment Analyser
-  - get_sentiment_classifier = return sentiment classifier
 
 class nouns_analyser
   - get_nouns_analyser = return nouns analyser
@@ -30,8 +36,3 @@ class Visualiser:
   generateBarChart
   generateWordCloud
   generatePieChart
-
-class Trainer:
-  pre_process_analyser_visualiser
-  train_model
-  save_model

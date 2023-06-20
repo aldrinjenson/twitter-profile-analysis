@@ -39,7 +39,7 @@ def create_streamlit_base():
         "[Aldrin Jenson](https://aldrinjenson.tech)"
     )
 
-    st.sidebar.markdown("#### Connect with me:")
+    st.sidebar.markdown("### Connect with me:")
     st.sidebar.markdown("[GitHub](https://github.com/aldrinjenson)")
     st.sidebar.markdown("[LinkedIn](https://www.linkedin.com/in/aldrinjenson)")
     st.sidebar.markdown("[Twitter](https://twitter.com/aldrinjenson)")
