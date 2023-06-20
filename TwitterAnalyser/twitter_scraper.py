@@ -21,7 +21,7 @@ class TwitterScraper:
             return None
 
 
-    def get_raw_tweets_from_user(self, username):
+    def get_tweets_from_user_name(self, username):
         print(f"Fetching tweets from {username}")
         tweets_generator = sntwitter.TwitterSearchScraper(f"from:{username} -filter:media").get_items()
         tweets = []
@@ -30,4 +30,10 @@ class TwitterScraper:
             if i == self.max_tweet_count: break
             tweets.append(tweet)
         return tweets
+    
+    def get_tweet_text_from_tweets(self,tweets):
+        tweet_texts = []
+        for tweet in tweets:
+            tweet_texts.append(tweet.rawContent)
+        return tweet_texts
 

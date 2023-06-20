@@ -6,7 +6,6 @@ import re
 from transformers import pipeline
 from utils.sentiment_analysis import getTopEmotion, get_top_sentiment
 from utils.visual_utils import generate_sentiment_bar_char
-import nltk
 
 
 def extractEntities(text):

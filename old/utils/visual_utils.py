@@ -1,5 +1,4 @@
 import streamlit as st
-from collections import Counter
 import matplotlib.pyplot as plt
 from collections import Counter
 from wordcloud import WordCloud
