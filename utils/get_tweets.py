@@ -3,7 +3,6 @@ import tweepy
 from dotenv import dotenv_values
 import json
 import snscrape.modules.twitter as sntwitter
-# import streamlit as st
 
 env = dotenv_values('.env')
 
@@ -11,18 +10,15 @@ def fetch_tweets(profile_url, exclude_replies=True):
     username = profile_url.split("/")[-1]
     try:
         user = sntwitter.TwitterUserScraper(username).entity
+        print("Fetched user details")
         print(user)
-        print(user.statusesCount)
-        print("Username:", user.displayname)
-        print("Bio:", user.rawDescription)
-        print("Followers Count:", user.followersCount)
-        print("Friends Count:", user.friendsCount)
-        print("--------------------")
 
         tweets_generator = sntwitter.TwitterSearchScraper(f"from:{username} -filter:media").get_items()
         tweets = []
-        max_count = 20
+        max_count = 50
         for i, tweet in enumerate(tweets_generator):
+            print(tweet.cashtags)
+            # print(tweet.mentionedUsers[0])
             if i == max_count:
                 break
             tweets.append(tweet)
@@ -32,6 +28,3 @@ def fetch_tweets(profile_url, exclude_replies=True):
         print("Error:", str(e))
         return []
 
-
-if __name__ == "__main__":
-    fetch_tweets('https://twitter.com/aldrinjenson')

@@ -1,4 +1,5 @@
 import streamlit as st
+from collections import Counter
 import matplotlib.pyplot as plt
 from collections import Counter
 from wordcloud import WordCloud
@@ -46,6 +47,26 @@ def generate_bar_chart(keywords, num_show=10, title="Top Keyword Occurrences"):
     ax.set_xlabel("Keywords")
     ax.set_ylabel("Occurrences")
     ax.set_title(title)
+
+    plt.tight_layout()
+    st.pyplot(fig)
+
+
+def generate_sentiment_bar_char(data):
+
+    fig, ax = plt.subplots(figsize=(10, 6))
+    labels = ["Positive", "Negative"]
+
+    counter = Counter(data)
+    count_4 = counter[4]
+    count_0 = counter[0]
+    print(counter)
+
+    ax.bar(labels, [count_4, count_0], color=["blue", "red"])
+    ax.set_xticklabels(labels, rotation=45)
+    ax.set_xlabel("Sentiment")
+    ax.set_ylabel("Tweet count")
+    ax.set_title("Sentiment Distribution")
 
     plt.tight_layout()
     st.pyplot(fig)

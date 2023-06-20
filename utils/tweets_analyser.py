@@ -5,6 +5,7 @@ from utils.tweet_utils import generate_summary_report
 import re
 from transformers import pipeline
 from utils.sentiment_analysis import getTopEmotion, get_top_sentiment
+from utils.visual_utils import generate_sentiment_bar_char
 import nltk
 
 
@@ -32,8 +33,10 @@ def get_features_from_tweet(tweets):
         if tweet.hashtags:
             hashtags += tweet.hashtags
         if tweet.mentionedUsers:
-            mentioned_usernames = [user.username for user in tweet.mentionedUsers]
-        urls += tweet.outlinks
+            mentioned_usernames = [
+                user.username for user in tweet.mentionedUsers]
+        if tweet.links:
+            urls += tweet.links
 
         tweet_text = tweet.rawContent
         nouns = extractEntities(tweet_text)[0]
@@ -66,8 +69,11 @@ def get_features_from_tweet(tweets):
     # return hashtags, mentions, urls, all_emotions, all_nouns, top_liked_tweets, top_retweeted_tweets, top_viewed_tweets
 
 
+
 def analyse_tweets(tweets, user):
-    get_top_sentiment()
+    # tweets_text = [t.rawContent for t in tweets]
+    # sentiments_array = get_top_sentiment(tweets_text)
+    # generate_sentiment_bar_char(sentiments_array)
     tweet_features = get_features_from_tweet(tweets)
     print(tweet_features)
     summary_report = generate_summary_report(tweets, tweet_features)

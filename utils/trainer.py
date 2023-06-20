@@ -11,30 +11,52 @@ import pickle
 import re
 import streamlit as st
 
+# Global variables
+df = None
+vectorizer = None
+X_train = None
+X_test = None
+y_train = None
+y_test = None
+X_train_vec = None
 
-def train_test_vectorizer_split (df=None, custom_x_test=None):
+initialized = False
 
-    if not df:
-        df = pd.read_csv("../tweets_data.csv", encoding="latin-1", header=None)
-        df.columns = ["target", "ids", "date", "flag", "user", "text"]
+def initialize():
+    global df, vectorizer, X_train, X_test, y_train, y_test, X_train_vec, initialized
+    print("initialized = ", initialized)
+
+    if initialized:
+        return
+
+    df = pd.read_csv("./utils/tweets_data.csv", encoding="latin-1", header=None)
+    df.columns = ["target", "ids", "date", "flag", "user", "text"]
+
+    vectorizer = TfidfVectorizer(max_features=5000)
 
     # Vectorize the tweets using TF-IDF
-    vectorizer = TfidfVectorizer(max_features=5000)
     X = df["text"]
     y = df["target"]
-    X_train, X_test, y_train, y_test = train_test_split(
-        X, y, test_size=0.2, random_state=42)
 
     print("Vectorizing tweets")
+    X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
     X_train_vec = vectorizer.fit_transform(X_train)
+
+    print("Done vectorizing")
+    initialized = True
+
+
+def train_test_vectorizer_split(dataframe=None, custom_x_test=None):
+    global df, vectorizer, X_train, X_test, y_train, y_test, X_train_vec
+
+    initialize()
+
     if custom_x_test:
         X_test = custom_x_test
     X_test_vec = vectorizer.transform(X_test)
-    
 
-    return X_train_vec, X_test_vec, X_train,X_test,y_train,y_test
-    
-
+    print("Returning")
+    return X_train_vec, X_test_vec, X_train, X_test, y_train, y_test
 
 
 def pre_process_visualise(df):
@@ -57,11 +79,15 @@ def pre_process_visualise(df):
 
 final_model_name = "model.mdl"
 
+
 def train_model(df):
     print("Beginning training")
 
-    X_train_vec, X_test_vec, X_train,X_test,y_train,y_test = train_test_vectorizer_split(df)
- 
+    X_train_vec, X_test_vec, X_train, X_test, y_train, y_test = train_test_vectorizer_split(
+        df)
+
+    # do cleaning for X_train and X_test
+
     print("Predicting sentiments")
     model = LogisticRegression(max_iter=500, verbose=1)
     model.fit(X_train_vec, y_train)
@@ -80,7 +106,8 @@ def train_model(df):
 
 def evaluate_model(model_name, df):
     print("Beginning evaluation")
-    X_train_vec, X_test_vec, X_train,X_test,y_train,y_test = train_test_vectorizer_split(df)
+    X_train_vec, X_test_vec, X_train, X_test, y_train, y_test = train_test_vectorizer_split(
+        df)
 
     with open("model.mdl", "rb") as file:
         model = pickle.load(file)
