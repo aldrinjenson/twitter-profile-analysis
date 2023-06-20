@@ -1,0 +1,37 @@
+class EmotionAnalyser:
+  - get_emotion_classifier = return emotion classifier
+
+
+class Sentiment Analyser
+  - get_sentiment_classifier = return sentiment classifier
+
+class nouns_analyser
+  - get_nouns_analyser = return nouns analyser
+
+
+class rawTweetAnalyser
+  - get_raw_tweets_analyser = return  raw tweets analyser
+
+
+class TwitterScraper
+  get scraper = return scraper
+
+  getUserDetails = return User
+  getTweetsFromUser = return tweets
+  getRawTweetsFromUser = return raw tweets
+
+class PrettyPrint:
+  printUserDetails:
+  create_streamlit_base
+  
+
+
+class Visualiser:
+  generateBarChart
+  generateWordCloud
+  generatePieChart
+
+class Trainer:
+  pre_process_analyser_visualiser
+  train_model
+  save_model

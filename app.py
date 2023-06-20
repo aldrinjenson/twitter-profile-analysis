@@ -1,26 +1,29 @@
 import streamlit as st
-from utils.get_tweets import fetch_tweets
-from utils.misc_utils import print_user_profile, create_streamlit_base
-from utils.tweets_analyser import analyse_tweets
-
+from TwitterAnalyser.pretty_print import PrettyPrint
+from TwitterAnalyser.twitter_scraper import TwitterScraper
 
 
 def main():
-    create_streamlit_base()
-    twitter_profile_url = st.text_input("Enter twitter link:")
+    pp = PrettyPrint()
+    pp.create_streamlit_base()
+	# st.info("Loading Scraper")
+    ts = TwitterScraper()
+
+    twitter_profile_url = st.text_input("Enter twitter username or profile link:")
     if not twitter_profile_url:
         twitter_profile_url = "https://twitter.com/elonmusk"
+    if len(twitter_profile_url.split('/')) == 1:
+        twitter_profile_url = f"https://twitter.com/{twitter_profile_url}"
+
     if st.button("Submit"):
         if twitter_profile_url:
-            info_text = st.info("Fetching Profile...")
-            tweets, user = fetch_tweets(twitter_profile_url)
-
-            info_text.empty()
-            # info_text.empty()
-            print_user_profile(user)
-            analyse_tweets(tweets, user)
+            st.info("Fetching Profile...")
+            user = ts.get_user_from_url(twitter_profile_url)
+            pp.print_user_profile(user)
+            tweets = ts.get_raw_tweets_from_user(user.username)
         else:
             st.warning("Please enter a valid twitter link.")
+
 
 
 if __name__ == "__main__":
