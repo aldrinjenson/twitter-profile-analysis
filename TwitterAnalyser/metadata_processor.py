@@ -35,21 +35,21 @@ class MetaDataProcessor:
             metadata["mentionedUsers"] += tweet_metadata["mentionedUsers"]
         return metadata
 
-    def _format_ordered_list(self, items, limit=5):
+    def _format_ordered_list(self, items, limit=5, prefix=""):
         unique_items = list(set(items))
         limited_items = unique_items[:limit]
-        return "\n".join([f"{i+1}. {item}" for i, item in enumerate(limited_items)])
+        return "\n".join([f"{i+1}. {prefix}{item}" for i, item in enumerate(limited_items)])
 
     def print_metadata_summary(self, metadata):
         hashtags = metadata["hashtags"]
         mentions = metadata["mentionedUsers"]
 
-        report = f"## Tweet Analysis\n\n"
-        top_hashtags = self._format_ordered_list(hashtags, self.top_hashtags_limit)
-        report += "## Top Hashtags\n\n"
+        report = ""
+        top_hashtags = self._format_ordered_list(hashtags, self.top_hashtags_limit,'#')
+        report += "## Top Hashtags Used\n\n"
         report += top_hashtags + "\n\n"
 
-        top_mentions = self._format_ordered_list(mentions,self.top_mentions_limit)
+        top_mentions = self._format_ordered_list(mentions,self.top_mentions_limit,'@')
         report += "## Top Mentions\n\n"
         report += top_mentions + "\n\n"
 

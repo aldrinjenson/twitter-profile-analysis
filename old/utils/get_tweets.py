@@ -15,7 +15,7 @@ def fetch_tweets(profile_url, exclude_replies=True):
 
         tweets_generator = sntwitter.TwitterSearchScraper(f"from:{username} -filter:media").get_items()
         tweets = []
-        max_count = 50
+        max_count = 10
         for i, tweet in enumerate(tweets_generator):
             print(tweet.cashtags)
             # print(tweet.mentionedUsers[0])
