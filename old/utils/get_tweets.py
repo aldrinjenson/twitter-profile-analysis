@@ -18,7 +18,6 @@ def fetch_tweets(profile_url, exclude_replies=True):
         max_count = 10
         for i, tweet in enumerate(tweets_generator):
             print(tweet.cashtags)
-            # print(tweet.mentionedUsers[0])
             if i == max_count:
                 break
             tweets.append(tweet)

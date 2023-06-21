@@ -14,8 +14,8 @@ def main():
 	notification_msg = st.empty()
 
 	notification_msg.info("Loading preprocess classes...")
-	sp = SentimentProcessor()
 	ts = TwitterScraper()
+	# sp = SentimentProcessor()
 	npr = NounsProcessor()
 	mdp = MetaDataProcessor()
 	emp = EmotionProcessor()
@@ -34,6 +34,9 @@ def main():
 		if twitter_profile_url:
 			notification_msg.info("Fetching Profile...")
 			user = ts.get_user_from_url(twitter_profile_url)
+			if user is None:
+				notification_msg.info("Invlid username or profile! Check and try again")
+				return
 			username = user.username
 			pp.print_user_profile(user)
 

@@ -9,9 +9,6 @@ class SentimentProcessor:
 	vectorizer = None
 
 	def __init__(self):
-		print("initialising")
-		print(SentimentProcessor.model)
-		print(SentimentProcessor.vectorizer)
 		if not SentimentProcessor.model:
 			print("Loading Sentiment Processor Model")
 			with open('model.mdl', 'rb') as file:
