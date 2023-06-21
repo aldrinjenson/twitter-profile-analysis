@@ -15,7 +15,7 @@ def main():
 
 	notification_msg.info("Loading preprocess classes...")
 	ts = TwitterScraper()
-	# sp = SentimentProcessor()
+	sp = SentimentProcessor()
 	npr = NounsProcessor()
 	mdp = MetaDataProcessor()
 	emp = EmotionProcessor()

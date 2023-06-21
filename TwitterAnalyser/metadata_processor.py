@@ -77,14 +77,14 @@ class MetaDataProcessor:
         report += "## Top Links\n\n"
         report += top_links + "\n\n"
 
-        st.write(report)
-
         report = "## Most Popular Tweets (based on likes) ##\n\n"
-
         for tweet in top_liked_tweets:
             report += f"> **Tweet:** {tweet.rawContent}\n" \
-                    f"> **Posted on:** {tweet.date.strftime('%Y-%m-%d %H:%M:%S')} | " \
+                    f"**Posted on:** {tweet.date.strftime('%Y-%m-%d %H:%M:%S')} | " \
                     f"**Likes:** {tweet.likeCount} | " \
                     f"**Retweets:** {tweet.retweetCount} | " \
-                    f"**Replies:** {tweet.replyCount}\n\n"
+                    f"**Replies:** {tweet.replyCount}\n\n" \
+                    f"**Link:** {tweet.url}\n\n"
         report += "---"
+
+        st.write(report)

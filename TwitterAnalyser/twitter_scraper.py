@@ -3,7 +3,7 @@ import snscrape.modules.twitter as sntwitter
 
 class TwitterScraper:
     exclude_replies = True
-    max_tweet_count = 40
+    max_tweet_count = 100
 
     def __init__(self, exclude_replies=True, max_tweet_count=60):
         self.exclude_replies = exclude_replies
