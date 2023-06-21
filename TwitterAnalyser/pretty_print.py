@@ -26,7 +26,7 @@ class PrettyPrint:
         st.title("Twitter Profile Analyser")
         st.markdown(
             "**Analyse a profile and get insights for you CyberSecurity Research!**")
-        st.markdown("A person's tweets are an insight to their mind!"
+        st.markdown("A person's tweets are an insight to their mind!\n"
                     "Based on Twitter APIs the power of machine learning.")
         st.write(
             "Eg: try pasting this link maybe: https://twitter.com/elonmusk")

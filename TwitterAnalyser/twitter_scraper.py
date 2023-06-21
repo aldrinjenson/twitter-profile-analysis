@@ -5,7 +5,7 @@ class TwitterScraper:
     exclude_replies = True
     max_tweet_count = 40
 
-    def __init__(self, exclude_replies=True, max_tweet_count=10):
+    def __init__(self, exclude_replies=True, max_tweet_count=60):
         self.exclude_replies = exclude_replies
         self.max_tweet_count = max_tweet_count
 
