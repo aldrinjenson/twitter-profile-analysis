@@ -24,6 +24,7 @@ def fetch_tweets(profile_url, exclude_replies=True):
         return tweets, user
 
     except Exception as e :
+        print(e)
         print("Error:", str(e))
         return []
 

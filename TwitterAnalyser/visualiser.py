@@ -62,8 +62,8 @@ class Visualiser:
         counter = Counter(data)
         positive_count = counter[4]
         negative_count = counter[0]
-        print(counter)
-        st.markdown(f"Positive Tweets = {positive_count}\nNegative Tweets = {negative_count}")
+
+        st.markdown(f"Positive Tweets = {positive_count} | Negative Tweets = {negative_count}")
         ax.bar(labels, [positive_count, negative_count], color=["blue", "red"])
         ax.set_xticklabels(labels, rotation=45)
         ax.set_xlabel("Sentiment")
