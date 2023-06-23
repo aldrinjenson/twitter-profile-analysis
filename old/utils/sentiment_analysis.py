@@ -45,7 +45,6 @@ def get_top_sentiment(text_array=None):
 
 
 def getTopEmotion(string):
-    print(string)
     emotion_scores = emotion_classifier(string)
     total_score = sum(emotion['score'] for emotion in emotion_scores[0])
     normalized_scores = [{'label': emotion['label'],

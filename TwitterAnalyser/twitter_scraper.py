@@ -26,7 +26,6 @@ class TwitterScraper:
         tweets_generator = sntwitter.TwitterSearchScraper(f"from:{username} -filter:media").get_items()
         tweets = []
         for i, tweet in enumerate(tweets_generator):
-            print(tweet.links)
             if i == self.max_tweet_count: break
             tweets.append(tweet)
         return tweets
