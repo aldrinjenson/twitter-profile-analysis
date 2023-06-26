@@ -22,7 +22,7 @@ Web application built with Streamlit and Python for sentiment and metadata analy
 1. Clone the repository:
 
 ```bash
-git clone https://github.com/your-username/twitter-analysis-app.git
+git clone https://github.com/aldrinjenson/twitter-profile-analysis
 ```
 
 2. Navigate to the project directory:
@@ -45,7 +45,7 @@ Run the Streamlit app:
 streamlit run app.py
 ```
 
-- Open your web browser and go to the provided local URL (usually http://localhost:8501).
+- Open your web browser and go to the provided local URL (usually http://localhost:8501). This may take some time to download a few pre-trained models on first load.
 - Enter a Twitter profile URL or username in the input field.
 - Click the "Analyze" button to start the analysis process.
 - Explore the sentiment analysis, emotion analysis, metadata report, and noun processor results in the app's interface.
