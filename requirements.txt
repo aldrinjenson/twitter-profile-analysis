@@ -1,3 +1,4 @@
+streamlit
 scikit-learn
 tweepy
 requests
@@ -5,6 +6,7 @@ nltk
 wordcloud
 matplotlib
 urllib3
+torch
 python-dotenv
 pillow
 snscrape @ git+https://github.com/JustAnotherArchivist/snscrape.git@0d824ab77334ed4ab6250e5e491171afeccfb298
