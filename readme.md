@@ -8,7 +8,7 @@ Web application built with Streamlit and Python for sentiment and metadata analy
 - Analyze emotions expressed in tweets using pre-trained models.
 - Process and visualize metadata from Twitter profiles using charts and graphs.
 - Identify and analyze proper and common nouns in tweets using NLTK models.
-- Minimalist and beautiful Web applciation
+- Minimalist and beautiful Web application
 - Provide a summary of top tweets based on likes.
 - Display user profile information and bio.
 - Easy input of Twitter profile URL or username.
