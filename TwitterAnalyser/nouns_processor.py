@@ -4,7 +4,11 @@ import re
 
 class NounsProcessor:
 	def __init__(self):
-		pass
+		try:
+			nltk.data.find('tokenizers/punkt')
+		except LookupError:
+			print("Punkt not installed. Downloading..")
+			nltk.download('punkt')
 
 	def extract_entities(self, text):
 		tokens = nltk.word_tokenize(text)
