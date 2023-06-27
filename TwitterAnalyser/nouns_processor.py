@@ -6,9 +6,11 @@ class NounsProcessor:
 	def __init__(self):
 		try:
 			nltk.data.find('tokenizers/punkt')
+			nltk.data.find('taggers/averaged_perceptron_tagger')
 		except LookupError:
-			print("Punkt not installed. Downloading..")
+			# Download the missing resources
 			nltk.download('punkt')
+			nltk.download('averaged_perceptron_tagger')
 
 	def extract_entities(self, text):
 		tokens = nltk.word_tokenize(text)
