@@ -77,7 +77,7 @@ class MetaDataProcessor:
         report += "## Top Links\n\n"
         report += top_links + "\n\n"
 
-        report = "## Most Popular Tweets (based on likes) ##\n\n"
+        report += "\n## Most Popular Tweets (based on likes) ##\n\n"
         for tweet in top_liked_tweets:
             report += f"> **Tweet:** {tweet.rawContent}\n" \
                     f"**Posted on:** {tweet.date.strftime('%Y-%m-%d %H:%M:%S')} | " \
